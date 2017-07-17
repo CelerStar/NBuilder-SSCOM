@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="Description" content="本串口软件由NBuilder开发，是开源免费的自由软件，授权协议是MIT. 修改复制请保留此处." />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-switch-3.3.4/css/bootstrap3/bootstrap-switch.min.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/nbstrap/css/nbstrap.css" />
+
+	</head>
+
+	<body>
+		<div class="container-fluid nb-window" style="">
+			<div class="row nb-titlebar">
+				<nav class="navbar navbar-default" style="margin-bottom: 0px;">
+					<div class="container-fluid">
+
+						<a class="navbar-brand">OpenIOE 串口助手 V1.0</a>
+
+						<div class="pull-right" style="margin-top: 15px;">
+							<span class="glyphicon glyphicon-minus nb-titlebar-btn nb-win-min" style="color: #ff0000; margin-right: 5px;" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-unchecked nb-titlebar-btn nb-win-max" style="color: #ff0000; margin-right: 5px;" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-remove nb-titlebar-btn nb-win-close" style="color: #ff0000; margin-right: 5px;" aria-hidden="true"></span>
+						</div>
+
+					</div>
+				</nav>
+			</div>
+
+			<div class="row nb-content" style="">
+
+				<div class="nb-container-fluid">
+					<div class="col-xs-3 nb-col" style="border-right: 1px solid  #aaaaaa; ">
+						<div class="nb-row-xs-12 row">
+							<div class="col-xs-12 nb-col" style="padding: 10px;">
+								<br>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">串口设置</h3>
+									</div>
+									<div class="panel-body input-group" style="padding: 0px;">
+
+										<span class="input-group-addon" id="basic-addon1">串口编号</span>
+
+										<select class="form-control" id="serialPortsList">
+
+										</select>
+
+									</div>
+
+									<div class="panel-body input-group" style="padding: 0px;">
+
+										<span class="input-group-addon" id="basic-addon1">速率选择</span>
+
+										<select class="form-control" id="serialBandsList">
+											<option value="9600">9600</option>
+											<option value="19200">19200</option>
+											<option value="38400">38400</option>
+											<option value="43000">43000</option>
+											<option value="56000">56000</option>
+											<option value="115200">115200</option>
+										</select>
+
+									</div>
+
+									<div class="panel-body input-group col-xs-12 " style="padding: 5px;">
+
+										<div class="text-right">
+											<button type="button" id="renovateSerial" class=" btn btn-primary" style="">刷新</button>
+											<button type="button" id="openSerial" class=" btn btn-success" style="">打开</button>
+											<button type="button" id="closeSerial" class=" btn btn-danger" style="display: none;">关闭</button>
+										</div>
+
+									</div>
+								</div>
+
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h3 class="panel-title">数据设置</h3>
+									</div>
+
+									<div class="panel-body input-group col-xs-12 " style="">
+										<div class="" style="padding: 10px;">
+											<span id="">
+												接收控制
+											</span>
+											<span class="pull-right">
+<input id="hexString" data-size="mini" data-on-text="字符" data-off-text="HEX"  checked="checked"	 class="bootstrap-switch" type="checkbox" >
+									</span>
+										</div>
+										<div class="" style="padding: 10px;">
+											<span id="">
+												接收换行
+											</span>
+											<span class="pull-right">
+<input id="enterSwitch" data-size="mini" data-on-text="开启" data-off-text="关闭"   class="bootstrap-switch" type="checkbox"  >
+									</span>
+										</div>
+										<div class="" style="padding: 10px; display: none;">
+											<span id="">
+												发送控制
+											</span>
+											<span class="pull-right">
+<input data-size="mini"  data-on-text="HEX" data-off-text="字符" class="bootstrap-switch" type="checkbox" >
+									</span>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="" style="font-size: 2px; position: absolute; bottom: 0px; padding: 5px; ">
+									Copyright <a id="CelerStar" style="cursor: pointer">CelerStar</a> 
+						
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="col-xs-9 nb-col" style="">
+						<div class="row nb-col">
+							<div class="nb-rol nb-col">
+								<div class=" nb-row-xs-7">
+
+									<div class="col-xs-12 nb-col">
+										<h5 class="" style="">接收区</h5>
+										<div class="bs-example nb-row-xs-10" data-example-id="textarea-form-control">
+
+											<textarea class="form-control " id="consoletext" style="height: 100%; resize: none;" rows="3" placeholder=""></textarea>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class=" nb-row-xs-5">
+
+									<div class="col-xs-12 nb-col">
+										<h5 class="" style="">发送区</h5>
+										<div class="bs-example nb-row-xs-7" data-example-id="textarea-form-control">
+
+											<textarea class="form-control " id="sendText" style="height: 100%; resize: none;" rows="3" placeholder=""></textarea>
+
+										</div>
+
+										<div class="">
+
+											<div class="text-right" style="padding-top: 10px;">
+												<div class="btn-group">
+
+													<button type="button" id="clearRec" class=" btn btn-danger" style="">清除接收</button>
+													<button type="button" id="clearSerial" class=" btn btn-warning" style="">清除发送</button>
+													<button type="button" id="sendSerial" class=" btn btn-success" style="">发送数据</button>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/bootstrap-switch-3.3.4/js/bootstrap-switch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/nbstrap/js/nbstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(".bootstrap-switch").bootstrapSwitch();
+		</script>
+	</body>
+
+</html>
