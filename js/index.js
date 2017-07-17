@@ -74,7 +74,6 @@ var onReceiveCallback = function(info) {
  * 描述：
  */
 var onConnect = function(connectionInfo) {
-	chrome.serial.onReceive.addListener(onReceiveCallback);
 	connectionId = connectionInfo.connectionId;
 
 	$("#openSerial").hide();
@@ -115,7 +114,6 @@ var openCom = function() {
  * 描述：
  */
 var closeCom = function() {
-
 	chrome.serial.disconnect(connectionId, onClose);
 
 }
@@ -186,6 +184,7 @@ var sendDataString = function() {
  */
 $(window).ready(function() {
 	listCom();
+    chrome.serial.onReceive.addListener(onReceiveCallback);
 })
 
 /*
@@ -248,6 +247,15 @@ $("#clearRec").click(function() {
 	$("#consoletext").val("");
 });
 
+
+$("#serialPortsList").change(function(){
+	closeCom();
+})
+
+$("#serialBandsList").change(function(){
+	closeCom();
+})
+
 $().on('switch-change', function(e, data) {
 	var $el = $(data.el),
 		value = data.value;
@@ -272,8 +280,6 @@ $("#enterSwitch").on('switchChange.bootstrapSwitch', function(event, state) {
 	}
 });
 
-
-CelerStar
 
 /*
  * 名称：赛灵开源社区连接
