@@ -3,6 +3,7 @@ var connectionId;
 
 var serialRevStringState = true;
 var serialRevEnterState = false;
+var serialSendEnterState = false;
 
 /*
  * 名称：二进制数组转字符串
@@ -174,6 +175,17 @@ var sendDataString = function() {
 	var buffer = convertStringToArrayBuffer(sendtext);
 
 	chrome.serial.send(connectionId, buffer, function() {});
+	
+	if(serialSendEnterState == true)
+	{
+		var buffer = new ArrayBuffer(2);
+		var dataView = new DataView(buffer);
+	
+		dataView.setInt8(0, 0x0d);
+		dataView.setInt8(1, 0x0a);
+		
+		chrome.serial.send(connectionId, buffer, function() {});
+	}
 }
 
 /*
@@ -280,6 +292,14 @@ $("#enterSwitch").on('switchChange.bootstrapSwitch', function(event, state) {
 	}
 });
 
+$("#hrSwitch").on('switchChange.bootstrapSwitch', function(event, state) {
+
+	if(state == false) {
+		serialSendEnterState = false;
+	} else {
+		serialSendEnterState = true;
+	}
+});
 
 /*
  * 名称：赛灵开源社区连接
