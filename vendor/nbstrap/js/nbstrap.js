@@ -1,5 +1,5 @@
 /*!
- * NBstrap v1.3.0
+ * NBstrap v1.5.0
  * Copyright 2017-2018 NBuilder, Inc.
  * Licensed under MIT
  */
