@@ -175,15 +175,14 @@ var sendDataString = function() {
 	var buffer = convertStringToArrayBuffer(sendtext);
 
 	chrome.serial.send(connectionId, buffer, function() {});
-	
-	if(serialSendEnterState == true)
-	{
+
+	if(serialSendEnterState == true) {
 		var buffer = new ArrayBuffer(2);
 		var dataView = new DataView(buffer);
-	
+
 		dataView.setInt8(0, 0x0d);
 		dataView.setInt8(1, 0x0a);
-		
+
 		chrome.serial.send(connectionId, buffer, function() {});
 	}
 }
@@ -196,7 +195,7 @@ var sendDataString = function() {
  */
 $(window).ready(function() {
 	listCom();
-    chrome.serial.onReceive.addListener(onReceiveCallback);
+	chrome.serial.onReceive.addListener(onReceiveCallback);
 })
 
 /*
@@ -259,12 +258,11 @@ $("#clearRec").click(function() {
 	$("#consoletext").val("");
 });
 
-
-$("#serialPortsList").change(function(){
+$("#serialPortsList").change(function() {
 	closeCom();
 })
 
-$("#serialBandsList").change(function(){
+$("#serialBandsList").change(function() {
 	closeCom();
 })
 
@@ -310,3 +308,98 @@ $("#hrSwitch").on('switchChange.bootstrapSwitch', function(event, state) {
 $("#CelerStar").click(function() {
 	nw.Shell.openExternal('https://www.celerstar.com/');
 });
+
+
+$("#openioe").click(function() {
+	nw.Shell.openExternal('http://www.openioe.net/');
+});
+
+var appIotAID = "000000000NBSSCOM";
+var appVersionNowNum = 140;
+var appUpdateUrl = 'https://www.celerstar.com/';
+
+$("#download").click(function() {
+	nw.Shell.openExternal(appUpdateUrl);
+})
+
+var inqappInfo = function() {
+
+	var message = {
+		"LINK": "app",
+		"ISTR": "inq",
+		"CONT": "appInfo",
+		"appIotAID": appIotAID,
+	};
+
+	$.ajax({
+
+		type: "GET",
+		url: "https://api.openioe.net/APP/index.php",
+
+		data: message,
+		timeout: 3000,
+		dataType: 'JSONP',
+		jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+
+		success: function(data) {
+
+			if(data["INFO"] == "true") {
+
+				var appUpdateEnable = data["NOTE"]["appUpdateEnable"];
+				appUpdateUrl = data["NOTE"]["appUpdateUrl"];
+				var appUpdateInfo = data["NOTE"]["appUpdateInfo"];
+				var appVersionNum = Number(data["NOTE"]["appVersionNum"]);
+
+				if(appUpdateEnable == "ON" && appVersionNum > appVersionNowNum) {
+					$('#updateInfo').html(appUpdateInfo);
+					$('#updateBox').modal('show');
+
+				}
+			} else {}
+
+		},
+
+		error: function() {}
+
+	});
+
+	return false;
+}
+
+inqappInfo();
+
+var upAppViewCount = function() {
+
+	var message = {
+		"LINK": "app",
+		"ISTR": "rev",
+		"CONT": "appViewCount",
+		"appIotAID": appIotAID,
+	};
+
+	$.ajax({
+
+		type: "GET",
+		url: "http://api.openioe.net/APP/index.php",
+
+		data: message,
+		timeout: 3000,
+		dataType: 'JSONP',
+		jsonp: "callback",
+
+		success: function(data) {
+
+			if(data["INFO"] == "true") {
+
+			} else {}
+
+		},
+
+		error: function() {}
+
+	});
+
+	return false;
+}
+
+upAppViewCount();

@@ -1,6 +1,6 @@
 {
     "main": "index.html",
-    "name": "NBuilder-SSCOM",
+    "name": "OpenIOE 串口助手",
     "nodejs": true,
     "single-instance": true,
     "window": {
@@ -9,8 +9,8 @@
         "height": 600,
         "icon": "logo.png",
         "position": "center",
-        "min_width": 0,
-        "min_height": 0,
+        "min_width": 800,
+        "min_height": 600,
         "max_width": 0,
         "max_height": 0,
         "resizable": true,

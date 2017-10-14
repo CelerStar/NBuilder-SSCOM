@@ -5,179 +5,201 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="Description" content="本串口软件由NBuilder开发，是开源免费的自由软件，授权协议是MIT. 修改复制请保留此处." />
-		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
-		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-switch-3.3.4/css/bootstrap3/bootstrap-switch.min.css" />
+
+		<!--  ==========  -->
+		<!--  = 框架引入 =  -->
+		<!--  ==========  -->
+		<link rel="stylesheet" type="text/css" href="assets/css/bootmetro.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootmetro-responsive.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro-responsive.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootmetro-icons.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro-icons.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootmetro-ui-light.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro-ui-light.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/datepicker.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/datepicker.css">
 		<link rel="stylesheet" type="text/css" href="vendor/nbstrap/css/nbstrap.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap-switch-3.3.4/css/bootstrap3/bootstrap-switch.min.css" />
 
 	</head>
 
-	<body>
-		<div class="container-fluid nb-window" style="">
-			<div class="row nb-titlebar">
-				<nav class="navbar navbar-default" style="margin-bottom: 0px;">
-					<div class="container-fluid">
+	<body onselectstart="return false;">
+		<div class="nb-window nb-layout" style="">
+			<div class="nb-layout nb-titlebar " style=" height: calc(32px); ">
+				<div class="nb-layout" style="width: calc(256px); height: calc(31px); line-height: 31px;">
+					&nbsp;&nbsp;OpenIOE 串口助手 V1.4.0
+				</div>
+				<div class="nb-layout align-right" style="width: calc(100% - 256px); height: calc(31px); line-height: calc(31px);">
+					<img src="img/nb-min-b.png " class="nb-win-min nb-titlebar-btn" style="height: 50%;" />
+					<img src="img/nb-max-b.png" class="nb-win-max nb-titlebar-btn" style="height: 50%;" />
+					<img src="img/nb-close-b.png" class="nb-win-close nb-titlebar-btn" style="height: 50%;" /> &nbsp;
+				</div>
+				<div class="nb-layout" style="height: 1px; background: #ddd;">
 
-						<a class="navbar-brand">OpenIOE 串口助手 V1.2</a>
-
-						<div class="pull-right" style="margin-top: 15px;">
-							<span class="glyphicon glyphicon-minus nb-titlebar-btn nb-win-min" style="color: #ff0000; margin-right: 5px;" aria-hidden="true"></span>
-							<span class="glyphicon glyphicon-unchecked nb-titlebar-btn nb-win-max" style="color: #ff0000; margin-right: 5px;" aria-hidden="true"></span>
-							<span class="glyphicon glyphicon-remove nb-titlebar-btn nb-win-close" style="color: #ff0000; margin-right: 5px;" aria-hidden="true"></span>
-						</div>
-
-					</div>
-				</nav>
+				</div>
 			</div>
+			<div class="nb-layout" style="height: calc(100% - 32px);">
+				<div class="nb-layout" style="width: calc(200px); ">
+					<div class="nb-layout" style="height: auto;">
+						<div class="panel">
 
-			<div class="row nb-content" style="">
+							<div class="" style="padding: 5px;">
 
-				<div class="nb-container-fluid">
-					<div class="col-xs-3 nb-col" style="border-right: 1px solid  #aaaaaa; ">
-						<div class="nb-row-xs-12 row">
-							<div class="col-xs-12 nb-col" style="padding: 10px;">
-								<br>
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<h3 class="panel-title">串口设置</h3>
-									</div>
-									<div class="panel-body input-group" style="padding: 0px;">
+								<span class="" id="basic-addon1">串口编号</span>
 
-										<span class="input-group-addon" id="basic-addon1">串口编号</span>
+								<select class="btn-small" style="width: calc(100%);" id="serialPortsList">
 
-										<select class="form-control" id="serialPortsList">
+								</select>
 
-										</select>
+							</div>
 
-									</div>
+							<div class="" style="padding: 5px;">
 
-									<div class="panel-body input-group" style="padding: 0px;">
+								<span class="" id="basic-addon1">速率选择</span>
 
-										<span class="input-group-addon" id="basic-addon1">速率选择</span>
+								<select class="btn-small" style="width: calc(100%);" id="serialBandsList">
+									<option value="9600">9600</option>
+									<option value="19200">19200</option>
+									<option value="38400">38400</option>
+									<option value="43000">43000</option>
+									<option value="56000">56000</option>
+									<option value="115200">115200</option>
+								</select>
 
-										<select class="form-control" id="serialBandsList">
-											<option value="9600">9600</option>
-											<option value="19200">19200</option>
-											<option value="38400">38400</option>
-											<option value="43000">43000</option>
-											<option value="56000">56000</option>
-											<option value="115200">115200</option>
-										</select>
+							</div>
 
-									</div>
+							<div class="" style="padding: 5px;">
 
-									<div class="panel-body input-group col-xs-12 " style="padding: 5px;">
-
-										<div class="text-right">
-											<button type="button" id="renovateSerial" class=" btn btn-primary" style="">刷新</button>
-											<button type="button" id="openSerial" class=" btn btn-success" style="">打开</button>
-											<button type="button" id="closeSerial" class=" btn btn-danger" style="display: none;">关闭</button>
-										</div>
-
-									</div>
+								<div class="text-right">
+									<button type="button" id="renovateSerial" class=" btn btn-primary btn-small" style="">刷新</button>
+									<button type="button" id="openSerial" class=" btn btn-success btn-small" style="">打开</button>
+									<button type="button" id="closeSerial" class=" btn btn-danger btn-small" style="display: none;">关闭</button>
 								</div>
 
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<h3 class="panel-title">数据设置</h3>
-									</div>
+							</div>
+						</div>
+					</div>
+					<div class="nb-layout" style="height: calc(1px); background: #ddd;">
+					</div>
+					<div class="nb-layout" style="height: calc(250px); ">
 
-									<div class="panel-body input-group col-xs-12 " style="">
-										<div class="" style="padding: 10px;">
-											<span id="">
+						<div class="panel-body input-group col-xs-12 " style="">
+							<div class="" style="padding: 10px;">
+								<span id="">
 												接收控制
 											</span>
-											<span class="pull-right">
+								<span class="pull-right">
 <input id="hexString" data-size="mini" data-on-text="字符" data-off-text="HEX"  checked="checked"	 class="bootstrap-switch" type="checkbox" >
 									</span>
-										</div>
-										<div class="" style="padding: 10px;">
-											<span id="">
+							</div>
+							<div class="" style="padding: 10px;">
+								<span id="">
 												接收换行
 											</span>
-											<span class="pull-right">
+								<span class="pull-right">
 <input id="enterSwitch" data-size="mini" data-on-text="开启" data-off-text="关闭"   class="bootstrap-switch" type="checkbox"  >
 									</span>
-										</div>
-										<div class="" style="padding: 10px; display: ;">
-											<span id="">
+							</div>
+							<div class="" style="padding: 10px; display: ;">
+								<span id="">
 												发送新行
 											</span>
-											<span class="pull-right">
+								<span class="pull-right">
 <input id="hrSwitch" data-size="mini"  data-on-text="开启" data-off-text="关闭" class="bootstrap-switch" type="checkbox" >
 									</span>
-										</div>
-									</div>
-								</div>
-								
-								
-								<div class="" style="font-size: 8px; position: absolute; bottom: 0px; padding: 5px; ">
-									Copyright <a id="CelerStar" style="cursor: pointer">CelerStar</a> 
-						
-								</div>
 							</div>
-
 						</div>
-
 					</div>
-					<div class="col-xs-9 nb-col" style="">
-						<div class="row nb-col">
-							<div class="nb-rol nb-col">
-								<div class=" nb-row-xs-7">
 
-									<div class="col-xs-12 nb-col">
-										<h5 class="" style="">接收区</h5>
-										<div class="bs-example nb-row-xs-10" data-example-id="textarea-form-control">
-
-											<textarea class="form-control " id="consoletext" style="height: 100%; resize: none;" rows="3" placeholder=""></textarea>
-
-										</div>
-									</div>
-
-								</div>
-
-								<div class=" nb-row-xs-5">
-
-									<div class="col-xs-12 nb-col">
-										<h5 class="" style="">发送区</h5>
-										<div class="bs-example nb-row-xs-7" data-example-id="textarea-form-control">
-
-											<textarea class="form-control " id="sendText" style="height: 100%; resize: none;" rows="3" placeholder=""></textarea>
-
-										</div>
-
-										<div class="nb-pull-bottom pull-right col-xs-12">
-
-											<div class="text-right" style="padding-top: 10px; padding-right:10px ;">
-												<div class="btn-group">
-
-													<button type="button" id="clearRec" class=" btn btn-danger" style="">清除接收</button>
-													<button type="button" id="clearSerial" class=" btn btn-warning" style="">清除发送</button>
-													<button type="button" id="sendSerial" class=" btn btn-success" style="">发送数据</button>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
+					<div class="nb-layout nb-pull-bottom" style="line-height: 22px; height: calc(24px); ">
+						<span style="font-size: 8px;">
+							 &nbsp;&nbsp;Copyright <a id="CelerStar" style="cursor: pointer">CelerStar</a> 
+						</span>
 					</div>
 				</div>
+				<div class="nb-layout nb-drag-ns" style="width: calc(1px); background: #ddd;">
 
+				</div>
+				<div class="nb-layout" style="width: calc(100% - 201px); ">
+					<div class="nb-layout" style="height: calc(100% - 202px)">
+
+						<div class="nb-layout text-center" style="height: calc(100%); ">
+
+							<textarea class="nb-layout" id="consoletext" placeholder="接收区" style=" margin: 0px; resize: none; "></textarea>
+
+						</div>
+					</div>
+					<div class="nb-layout" style="height: calc(1px); background: #ddd;">
+
+					</div>
+					<div class="nb-layout" style="height: calc(200px);">
+
+						<div class="nb-layout" style="height: calc(159px);">
+
+							<textarea class="nb-layout" placeholder="发送区" id="sendText" style="" rows="3" placeholder=""></textarea>
+
+						</div>
+						<div class="nb-layout" style="height: calc(1px); background: #ddd;">
+
+						</div>
+						<div class="nb-layout " style="width: 40%; height: calc(40px);">
+
+							<a class="nb-pull-bottom nb-titlebar-btn" style="font-size:12px ;" id="openioe">
+								&nbsp; OpenIOE 提供云计算服务
+							</a>
+
+						</div>
+						<div class="nb-layout" style="width: 60%; height: calc(40px);">
+							<div class="text-right" style="padding-top: 7px; padding-right:7px ;">
+								<div class="btn-group">
+
+									<button type="button" id="clearRec" class=" btn btn-danger btn-small" style="">清除接收</button>
+									<button type="button" id="clearSerial" class=" btn btn-warning btn-small" style="">清除发送</button>
+									<button type="button" id="sendSerial" class=" btn btn-success btn-small" style="">发送数据</button>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="updateBox" class="modal  hide fade in" style="display: none;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h3></h3>更新提示
+			</div>
+			<div class="modal-body">
+				<p>软件已检测到最新版本，是否下载？</p>
+				<p id="updateInfo"></p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal">取消</button>
+				<button class="btn btn-primary" id="download">下载</button>
 			</div>
 		</div>
 
+		<!--  ==========  -->
+		<!--  = 框架引入 =  -->
+		<!--  ==========  -->
 		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-		<script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="assets/js/min/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootmetro-panorama.js"></script>
+		<script type="text/javascript" src="assets/js/bootmetro-pivot.js"></script>
+		<script type="text/javascript" src="assets/js/bootmetro-charms.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="assets/js/holder.js"></script>
+		<script type="text/javascript" src="assets/js/min/Chart.min.js"></script>
+		<script src="vendor/nbstrap/js/nbstrap.js "></script>
 		<script src="vendor/bootstrap-switch-3.3.4/js/bootstrap-switch.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="vendor/nbstrap/js/nbstrap.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
-
 		<script type="text/javascript">
 			$(".bootstrap-switch").bootstrapSwitch();
 		</script>
+
+		<!--  ==========  -->
+		<!--  = 个人引入 =  -->
+		<!--  ==========  -->
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+
 	</body>
 
 </html>
