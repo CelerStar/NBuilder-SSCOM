@@ -1,6 +1,6 @@
 var iconv = require('iconv-lite');
-var connectionId;
 
+var connectionId = -1;
 var serialRevStringState = true;
 var serialRevEnterState = false;
 var serialSendEnterState = false;
@@ -46,26 +46,34 @@ function toHex(num) { //将一个数字转化成16进制字符串形式
  * 描述：
  */
 var onReceiveCallback = function(info) {
-	receiceString = convertArrayBufferToString(info.data);
 
-	if(serialRevStringState == true) {
-		$("#consoletext").val($("#consoletext").val() + receiceString);
-	} else {
+	var connectionIdNow = info.connectionId;
 
-		var bufView = new Uint8Array(info.data);
-		for(var i = 0; i < bufView.length; i++) {
-			console.log(toHex(bufView[i]));
+	if(connectionIdNow == connectionId) {
 
-			$("#consoletext").val($("#consoletext").val() + toHex(bufView[i]) + " ");
+		receiceString = convertArrayBufferToString(info.data);
+
+		if(serialRevStringState == true) {
+			$("#consoletext").val($("#consoletext").val() + receiceString);
+		} else {
+
+			var bufView = new Uint8Array(info.data);
+			for(var i = 0; i < bufView.length; i++) {
+				console.log(toHex(bufView[i]));
+
+				$("#consoletext").val($("#consoletext").val() + toHex(bufView[i]) + " ");
+			}
 		}
+
+		if(serialRevEnterState == true) {
+			$("#consoletext").val($("#consoletext").val() + "\r\n");
+		}
+
+		var scrollTop = $("#consoletext")[0].scrollHeight;
+		$("#consoletext").scrollTop(scrollTop);
+
 	}
 
-	if(serialRevEnterState == true) {
-		$("#consoletext").val($("#consoletext").val() + "\r\n");
-	}
-
-	var scrollTop = $("#consoletext")[0].scrollHeight;
-	$("#consoletext").scrollTop(scrollTop);
 };
 
 /*
@@ -116,7 +124,6 @@ var openCom = function() {
  */
 var closeCom = function() {
 	chrome.serial.disconnect(connectionId, onClose);
-
 }
 
 /*
@@ -309,13 +316,12 @@ $("#CelerStar").click(function() {
 	nw.Shell.openExternal('https://www.celerstar.com/');
 });
 
-
 $("#openioe").click(function() {
 	nw.Shell.openExternal('http://www.openioe.net/');
 });
 
 var appIotAID = "000000000NBSSCOM";
-var appVersionNowNum = 140;
+var appVersionNowNum = 150;
 var appUpdateUrl = 'https://www.celerstar.com/';
 
 $("#download").click(function() {
